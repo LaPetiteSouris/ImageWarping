@@ -18,21 +18,21 @@ for i=1:100:M
     end
 end
 
-for k = 1:100:M
-    x = [1 N];
-    
-    y = [k k];
-    
-    plot(x,y,'Color','g','LineStyle','-');
-    plot(x,y,'Color','g','LineStyle','-');
-end
-
-for k = 1:100:N
-    x = [k k];
-    y = [1 M];
-    plot(x,y,'Color','g','LineStyle','-');
-    plot(x,y,'Color','g','LineStyle','-');
-end
+% for k = 1:100:M
+%     x_c = [1 N];
+%
+%     y_c = [k k];
+%
+%     plot(x_c,y_c,'Color','g','LineStyle','-');
+%     plot(x_c,y_c,'Color','g','LineStyle','-');
+% end
+%
+% for k = 1:100:N
+%     x_c = [k k];
+%     y_c = [1 M];
+%     plot(x_c,y_c,'Color','g','LineStyle','-');
+%     plot(x_c,y_c,'Color','g','LineStyle','-');
+% end
 % Each line consist of 4 element, these are 4 corners points
 % of the rectlanges. Values are index in vector points.
 % Example rectangle(1,:)=[1,2,3,4] : four corner point of the first
@@ -43,7 +43,7 @@ rect_indx=1;
 
 for i=1:100:M
     for j=1:100:N
-        % point origin(j,i), find 3 other corner of rectangle
+        % for each point (j,i), find 3 other corner of rectangle
         % (j+100,i) (j+100,i+100) (j,i+100)
         
         [~, index1]=ismember([j i], points, 'rows');
@@ -61,10 +61,46 @@ end
 
 for i=1:1:rect_indx-1
     for u=1:1:4
-        
         plot(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),'ro','linewidth',8 );
     end
 end
+% % Change mesh
+x_c=[];
+y_c=[];
+
+button = 1;
+while sum(button) <=1   % read ginputs until a mouse right-button occurs
+    [x,y,button] = ginput(1);
+    x=round(x);
+    y=round(y);
+    plot(x,y,'bo','linewidth',8);
+    x_c=[x_c x];
+    y_c=[y_c y];
+end
+
+for k=1:1:length(x_c)
+    d_min=distance(points(1,1),points(1,2),x_c(k),y_c(k));
+    i_nearest=0;
+    u_nearest=0;
+    for i=1:1:rect_indx-1
+        for u=1:1:4
+            
+            d=distance(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),x_c(k),y_c(k));
+            if d< d_min
+                d_min=d;
+                i_nearest=i;
+                u_nearest=u;
+            end
+            
+        end
+    end
+    points(rectangles_table(i_nearest, u_nearest),1)=x_c(k);
+    points(rectangles_table(i_nearest, u_nearest),2)=y_c(k);
+end
 
 
-
+for i=1:1:rect_indx-1
+    for u=1:1:4
+        plot(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),'go','linewidth',8 );
+    end
+end
