@@ -58,10 +58,11 @@ for i=1:100:M
         
     end
 end
-
+h_v=[];
 for i=1:1:rect_indx-1
     for u=1:1:4
-        plot(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),'ro','linewidth',8 );
+        h=plot(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),'ro','linewidth',8 );
+        h_v=[h_v h];
     end
 end
 % % Change mesh
@@ -73,19 +74,19 @@ while sum(button) <=1   % read ginputs until a mouse right-button occurs
     [x,y,button] = ginput(1);
     x=round(x);
     y=round(y);
-    plot(x,y,'bo','linewidth',8);
+    plot(x,y,'go','linewidth',8);
     x_c=[x_c x];
     y_c=[y_c y];
 end
-
+points_new=points;
 for k=1:1:length(x_c)
-    d_min=distance(points(1,1),points(1,2),x_c(k),y_c(k));
+    d_min=distance(points_new(1,1),points_new(1,2),x_c(k),y_c(k));
     i_nearest=0;
     u_nearest=0;
     for i=1:1:rect_indx-1
         for u=1:1:4
             
-            d=distance(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),x_c(k),y_c(k));
+            d=distance(points_new(rectangles_table(i,u),1),points_new(rectangles_table(i,u),2),x_c(k),y_c(k));
             if d< d_min
                 d_min=d;
                 i_nearest=i;
@@ -94,13 +95,17 @@ for k=1:1:length(x_c)
             
         end
     end
-    points(rectangles_table(i_nearest, u_nearest),1)=x_c(k);
-    points(rectangles_table(i_nearest, u_nearest),2)=y_c(k);
+    points_new(rectangles_table(i_nearest, u_nearest),1)=x_c(k);
+    points_new(rectangles_table(i_nearest, u_nearest),2)=y_c(k);
 end
-
+delete(h_v)
 
 for i=1:1:rect_indx-1
+    x_rectangle_vector_to_plot=[];
+    y_rectangle_vector_to_plot=[];
     for u=1:1:4
-        plot(points(rectangles_table(i,u),1),points(rectangles_table(i,u),2),'go','linewidth',8 );
+        x_rectangle_vector_to_plot=[x_rectangle_vector_to_plot points_new(rectangles_table(i,u),1)];
+        y_rectangle_vector_to_plot=[y_rectangle_vector_to_plot points_new(rectangles_table(i,u),2)];
     end
+    plot(x_rectangle_vector_to_plot, y_rectangle_vector_to_plot,'r');
 end
