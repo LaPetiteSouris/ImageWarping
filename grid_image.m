@@ -1,7 +1,7 @@
 clear all
 clc
 
-rgb = imread('test.jpg');  %# Load a sample 3-D RGB image
+rgb = imread('test2.jpg');  %# Load a sample 3-D RGB image
 imshow(rgb)
 hold on
 M = size(rgb,1);
