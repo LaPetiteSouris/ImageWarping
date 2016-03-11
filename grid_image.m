@@ -109,3 +109,5 @@ for i=1:1:rect_indx-1
     end
     plot(x_rectangle_vector_to_plot, y_rectangle_vector_to_plot,'r');
 end
+
+H=findHomographie(points, points_new, rectangles_table);
