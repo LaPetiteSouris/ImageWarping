@@ -18,21 +18,7 @@ for i=1:100:M
     end
 end
 
-% for k = 1:100:M
-%     x_c = [1 N];
-%
-%     y_c = [k k];
-%
-%     plot(x_c,y_c,'Color','g','LineStyle','-');
-%     plot(x_c,y_c,'Color','g','LineStyle','-');
-% end
-%
-% for k = 1:100:N
-%     x_c = [k k];
-%     y_c = [1 M];
-%     plot(x_c,y_c,'Color','g','LineStyle','-');
-%     plot(x_c,y_c,'Color','g','LineStyle','-');
-% end
+
 % Each line consist of 4 element, these are 4 corners points
 % of the rectlanges. Values are index in vector points.
 % Example rectangle(1,:)=[1,2,3,4] : four corner point of the first
