@@ -9,10 +9,13 @@ N = size(rgb,2);
 %Vector of coordinate point
 points=[];
 index=1;
+
+lx=round(M/10);
+ly=round(N/10);
 % i is is along x axis
 % j is along y axis
-for i=1:100:M
-    for j=1:100:N
+for i=1:lx:M
+    for j=1:ly:N
         points(index,:)=[j i];
         index=index+1;
     end
@@ -27,15 +30,15 @@ end
 rectangles_table=[];
 rect_indx=1;
 
-for i=1:100:M
-    for j=1:100:N
+for i=1:lx:M
+    for j=1:ly:N
         % for each point (j,i), find 3 other corner of rectangle
         % (j+100,i) (j+100,i+100) (j,i+100)
         
         [~, index1]=ismember([j i], points, 'rows');
-        [~, index2]=ismember([j+100 i],points, 'rows');
-        [~, index3]=ismember([j+100 i+100],points, 'rows');
-        [~, index4]=ismember([j i+100],points, 'rows');
+        [~, index2]=ismember([j+ly i],points, 'rows');
+        [~, index3]=ismember([j+ly i+lx],points, 'rows');
+        [~, index4]=ismember([j i+lx],points, 'rows');
         if index1~=0&& index2~=0&&index3~=0&&index4~=0
             rectangles_table(rect_indx,:)=[index1 index2 index3 index4];
             rect_indx=rect_indx+1;
