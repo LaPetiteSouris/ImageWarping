@@ -1,7 +1,7 @@
 clear all
 clc
 % Load a sample 3-D RGB image
-rgb = imread('test2.jpg');
+rgb = imread('Lenna.png');
 imshow(rgb)
 hold on
 M = size(rgb,1);
@@ -21,7 +21,7 @@ for i=1:lx:M
     end
 end
 
-
+uiwait(msgbox('To modify mesh, first pick some points. Right click to end selection ','Ready for mesh deformation','modal'));
 % Each line consist of 4 element, these are 4 corners points
 % of the rectlanges. Values are index in vector points.
 % Example rectangle(1,:)=[1,2,3,4] : four corner point of the first
