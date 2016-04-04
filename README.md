@@ -16,5 +16,5 @@ Execute warping_starter.m with Matlab and follow the instruction <br/>
 
 The project is released under BSD Licence. Thus, any copy without mentioning the author is not permited. This is to prevent academic plagiarism in the course.
 
-Please refer to BSD licence at https://github.com/LaPetiteSouris/ImageWarping/Licences
+Please refer to BSD licence at https://github.com/LaPetiteSouris/ImageWarping/blob/master/Licences
 
