@@ -1,5 +1,6 @@
 clear all
 clc
+close all;
 % Load a sample 3-D RGB image
 rgb = imread('Lenna.png');
 imshow(rgb)
@@ -142,7 +143,7 @@ for i=1:1:number_of_rect
     % Perform inverse transformation from destination image
     % in a region covered by the rectangle center (x_cen; y_cen) with
     % length 2*ly, heigh 2* lx
-    IMG=inverse_mapping(IMG,rgb, H{i},xmin,ymin,xmax,ymax, x_cen-50, y_cen-50,x_cen+50,y_cen+50);
+    IMG=inverse_mapping(IMG,rgb, H{i},xmin,ymin,xmax,ymax, x_cen-lx, y_cen-ly,x_cen+lx,y_cen+ly);
 end
 close(h)
 

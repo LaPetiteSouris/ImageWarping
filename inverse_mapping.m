@@ -19,10 +19,10 @@ function IMG=inverse_mapping(IM, im , H, xmin_ori, ymin_ori, xmax_ori, ymax_ori,
 
 % Size of single image
 [M,N,C] = size(im);
-% Size of mosaiced image
+% Size of destination image
 IMG = IM;
 % Assign pixel values
-x_new = [0 0 1]'; % Homogeneous coordinate in new plane
+x_new = [0 0 1]'; % Homogeneous coordinate in image
 for m = ymin_des : ymax_des
     x_new(2) = m  - 1;
     for n =xmin_des:xmax_des
@@ -36,8 +36,9 @@ for m = ymin_des : ymax_des
             fy = y - fix(y);
             % if pixel is in the image && inside rectangle mesh of original
             % image
-            if (xmin_ori-1 <= x && x <= xmax_ori+1 && ymin_ori-1 <= y && y <= ymax_ori+1&&1<= x&&1 <= y )
-                % Use bilinear interpolation
+           % if (xmin_ori-1 <= x && x <= xmax_ori+1 && ymin_ori-1 <= y && y <= ymax_ori+1&&1<= x&&1 <= y )
+           if (1 <= x && x <= N && 1 <= y && y <= M)
+                % Bilinear interpolation
                 IMG(m,n,c) = (1 - fx) * (1 - fy) * im(fix(y),fix(x),c) +...
                     (1 - fx) * fy * im(ceil(y),fix(x),c) +...
                     fx * (1 - fy) * im(fix(y),ceil(x),c) +...
