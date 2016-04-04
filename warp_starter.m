@@ -142,7 +142,7 @@ for i=1:1:number_of_rect
     y_cen=round(sum_y_rect_des/4);
     % Perform inverse transformation from destination image
     % in a region covered by the rectangle center (x_cen; y_cen) with
-    % length 2*ly, heigh 2* lx
+    % length ly, heigh  lx
     IMG=inverse_mapping(IMG,rgb, H{i},xmin,ymin,xmax,ymax, x_cen-lx, y_cen-ly,x_cen+lx,y_cen+ly);
 end
 close(h)
