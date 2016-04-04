@@ -36,8 +36,7 @@ for m = ymin_des : ymax_des
             fy = y - fix(y);
             % if pixel is in the image && inside rectangle mesh of original
             % image
-           % if (xmin_ori-1 <= x && x <= xmax_ori+1 && ymin_ori-1 <= y && y <= ymax_ori+1&&1<= x&&1 <= y )
-           if (1 <= x && x <= N && 1 <= y && y <= M)
+            if (xmin_ori-1 <= x && x <= xmax_ori+1 && ymin_ori-1 <= y && y <= ymax_ori+1&&1<= x&&1 <= y )
                 % Bilinear interpolation
                 IMG(m,n,c) = (1 - fx) * (1 - fy) * im(fix(y),fix(x),c) +...
                     (1 - fx) * fy * im(ceil(y),fix(x),c) +...
